@@ -6,13 +6,7 @@ module.exports = {
   mode: 'development',
   module: {
     rules: [
-      // {
-      //   test: /\.js$/,
-      //   exclude: /node_modules|web_modules/,
-      //   use: [{
-      //     loader: 'babel-loader'
-      //   }]
-      // },
+
       {
         test:/\.css$/,
         use:['style-loader','css-loader']
@@ -23,15 +17,6 @@ module.exports = {
       }      
     ],
   },
-  // output:{
-  //   filename:"test.js",
-  //   path:path.resolve(__dirname)
-  // } ,
-  // resolve: {
-  //     modules: ["E:\\nodejs\\node_global\\node_modules"]
-  // },
-  // resolveLoader: {
-  //     modules: ["E:\\nodejs\\node_global\\node_modules"]
-  // } 
+
 
 };

@@ -10,16 +10,7 @@ import ViewUI from 'view-design';
 Vue.use(ViewUI);
 //////////////////////////////////////////////
 
-//////////////////////////////////////////////
-// import ElementUI from 'element-ui'
-// import 'element-ui/lib/theme-chalk/index.css'
-// Vue.use(ElementUI);
-// import {Switch} from 'element-ui'
 
-// Vue.use(Switch);
-// Vue.use(Tabs);
-// Vue.use(TabPane);
-//////////////////////////////////////////////
 require("./lib/jquery-1.9.0.min.js")
 import {TabManager} from "./github_vue_tab.js"
 import {DBManager} from "./github_vue_db.js"
@@ -29,13 +20,7 @@ function add_dom() {
     var div = document.createElement("div");
 
     div.id = "aha"
-    // div.style.zIndex          = 5;
-    // div.style.position = "absolute";
-    // div.style.top = "64px";
-    // div.style.left = "0";
-    // div.style.color           = "red";
-    // div.style.size            = "32px";
-    // div.style.backgroundColor = "#232322";
+
     var first_dom = document.body.firstChild;//得到页面的第一个元素
     var wraphtml  = document.body.insertBefore(div, first_dom);
 
@@ -109,28 +94,7 @@ function add_dom() {
 
                 this.merge_comment(data)
             })
-            /*
-                window.addEventListener('popstate', function (e) {
-                    console.log(e)
-                })
 
-                function hashChange(e){
-                    console.log(e)
-                }
-                var _wr = function(type) {
-                  var orig = history[type];
-                    console.log("aaa")
-                  return function() {
-                    var rv = orig.apply(this, arguments);
-                    var e = new Event(type);
-                    e.arguments = arguments;
-                    window.dispatchEvent(e);
-                      console.log("bbb")
-                    return rv;
-                  };
-                };
-                window.history.pushState = _wr('pushState');
-            */
         },
 
         methods: {
@@ -209,16 +173,7 @@ function add_dom() {
                         catch (e) {
                             console.log("db error:", e)
                         }
-                        // console.log("2.comment_obj",comment_obj);
-                        // var comment     = "";
-                        // ///* # 2. 生成dom元素->赋值->监听*/
-                        // if (comment_obj) {
-                        //     comment = comment_obj.comment;
-                        // }
-                        // else {
-                        //     comment = "not in db.";
-                        // }
-                        // factory.addDom_TextArea(index, comment, query_field);
+
 
                     }
                 }
