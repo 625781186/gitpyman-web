@@ -3,38 +3,68 @@
 import Vue from 'vue/dist/vue.esm.js'
 
 //////////////////////////////////////////////
-// import ViewUI from 'view-design';
+
 import 'view-design/dist/styles/iview.css';
 import ViewUI from 'view-design';
 
 Vue.use(ViewUI);
+
+
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+// import 'vuetify/dist/vuetify.min.css'
+
+
+import Vuetify from 'vuetify'
+Vue.use(Vuetify, {
+  iconfont: 'mdi',
+})
+
+
+
 //////////////////////////////////////////////
 
 
 require("./lib/jquery-1.9.0.min.js")
 import {TabManager} from "./github_vue_tab.js"
 import {DBManager} from "./github_vue_db.js"
-
+import VVTable from './components/table'
 
 function add_dom() {
-    var div = document.createElement("div");
 
+    /*vuetify icon*/
+    var link1 = document.createElement("link");
+    link1.rel = "stylesheet";
+    link1.type = "text/css";
+    link1.href = "https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css";
+    var link2 = document.createElement("link");
+    link2.rel = "stylesheet";
+    link2.type = "text/css";
+    link2.href = "https://fonts.googleapis.com/css?family=Material+Icons";
+
+    let head = document.getElementsByTagName("head")[0];
+    head.appendChild(link1);
+    head.appendChild(link2);
+    /*vuetify el*/
+    var div = document.createElement("div");
     div.id = "aha"
 
-    var first_dom = document.body.firstChild;//得到页面的第一个元素
-    var wraphtml  = document.body.insertBefore(div, first_dom);
+    let first_dom = document.body.firstChild;//得到页面的第一个元素
+    let wraphtml  = document.body.insertBefore(div, first_dom);
 
 
     window.vm = new Vue({
 
-        el: '#aha',
+        el        : '#aha',
+        components: {VVTable},
         data() {
             return {
 
                 QUERY_FIELD_LIST: {},
                 db_factory      : null,
                 show_table_state: true,
-
+                switch1         : true,
+                switch2         : false,
 
                 columns12: [
                     {
@@ -61,7 +91,6 @@ function add_dom() {
                     },
 
                 ],
-
             }
         },
         created() {
@@ -69,6 +98,7 @@ function add_dom() {
             this.db_factory = DBManager.get_factory('firebase');
             // console.log(this.db_factory)
             // this.db_factory.db_get_data()
+
         },
         mounted() {
 
@@ -221,26 +251,15 @@ function add_dom() {
 
                     <Tabs v-if="show_table_state" 
                         value="name1"
-                        style="max-width:600px;background-color: #ffffff!important">
+                        style="max-width:800px;background-color: #ffffff!important">
                         <TabPane label="标签一" name="name1">
-                            <div>
-                            
-                            </div>
-                            <div>
-                                <Table border :columns="columns12" :data="data6">
-                                    <template slot-scope="{ row }" slot="query_field">
-                                        <strong>{{ row.query_field }}</strong>
-                                    </template>
-                                    <template slot-scope="{ row, index }" slot="action">
-                                        <Button type="primary" size="small" style="margin-right: 5px" @click="to_url(index)">toUrl</Button>
-                                        <Button type="error" size="small" @click="delete_doc(index)">Delete</Button>
-                                    </template>
-                                </Table>
-                            </div>
+          
+                            <VVTable></VVTable>
+                                
+                       
                         </TabPane>
                     <TabPane label="标签二" name="name3">标签三的内容</TabPane>
                     </Tabs>
-
 
                    </div>`,
 
@@ -248,3 +267,4 @@ function add_dom() {
 }
 
 window.add_dom = add_dom
+
