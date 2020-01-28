@@ -1,24 +1,27 @@
 "use strict";
 
 /*import * as firebase from 'E:\\nodejs\\node_global\\node_modules\\firebase';*/
+
 /*抽象数据库工厂*/
 class AbsDBFactory {
     constructor() {
-        this.db=null;
-        this.db= this.connect()
+        this.db = null;
+        this.db = this.connect()
     }
 
     connect() {
 
     }
 
-    set_data() {
+    db_set_data() {
 
     }
 
-    get_data() {
+    db_get_data() {
 
     }
+
+    db_delete_doc(){}
 }
 
 /*具体 firebase数据库*/
@@ -27,7 +30,7 @@ class FireBaseDBFactory extends AbsDBFactory {
 
     /*数据库*/
     connect() {
-        this._collection = "users"
+        this._collection = "users";
 
 
         let firebaseConfig = {
@@ -50,73 +53,49 @@ class FireBaseDBFactory extends AbsDBFactory {
 
     //set
     db_set_data(doc, value) {
-        let _collection = this._collection
+        let _collection = this._collection;
         this.db.collection(_collection).doc(doc).set(value);
     }
 
 
     //get
     db_get_data(extra) {
-        let _collection = this._collection
+        let _collection                     = this._collection;
         const {index, query_field, factory} = extra;
-        let doc = query_field;        
-        let docRef      = this.db.collection(_collection).doc(doc);
+        let doc                             = query_field;
+        let docRef                          = this.db.collection(_collection).doc(doc);
 
         docRef.get()
             .then(function (doc) {
                 if (doc.exists) {
-                    let comment = doc.data().comment
+                    let comment = doc.data().comment;
                     console.log("Document data:", doc.data());
                     console.log("comment data:", comment);
-                    factory.addDom_TextArea(index,comment,query_field)
-           
+                    factory.addDom_TextArea(index, comment, query_field)
+
                 }
                 else {
                     console.log("No such document!");
                     let comment = "";
-                    factory.addDom_TextArea(index,comment,query_field)
-               
+                    factory.addDom_TextArea(index, comment, query_field)
                 }
             })
             .catch(function (error) {
                 console.log("Error getting document:", error);
-                // let comment = "error db.";
-                // addDom_TextArea(index,comment,query_field)
             });
     }
+    //del
+    db_delete_doc(doc){
+        let _collection                     = this._collection;
+        let docRef                          = this.db.collection(_collection).doc(doc);
 
-    db_get_all(){
-        let _collection = this._collection
-    
-        let docRef      = this.db.collection(_collection);
-
-        docRef.get()
-            .then(function (doc) {
-                if (doc.exists) {
-                    let comment = doc.data().comment
-                    console.log("Document data:", doc.data());
-                    console.log("comment data:", comment);
-                    factory.addDom_TextArea(index,comment,query_field)
-           
-                }
-                else {
-                    console.log("No such document!");
-                    let comment = "";
-                    factory.addDom_TextArea(index,comment,query_field)
-               
-                }
-            })
-            .catch(function (error) {
-                console.log("Error getting document:", error);
-                // let comment = "error db.";
-                // addDom_TextArea(index,comment,query_field)
-            });
+        docRef.delete()
     }
-    
+
 }
 
 /*具体 Mongodb数据库*/
-class MongodbDBFactory extends AbsDBFactory {
+class RemoteDBFactory extends AbsDBFactory {
     connect() {
 
     }
@@ -128,7 +107,7 @@ class DBManager {
     static get_factory(db_type = "firebase") {
         let factory = null;
         if (db_type === "firebase") {
-            console.log("new ")
+            console.log("new ");
             factory = new FireBaseDBFactory()
         }
         return factory

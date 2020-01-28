@@ -1,17 +1,15 @@
 "use strict";
-var mixin_db = {
-    methods: {},
-}
 
+import bus from "./github_vue_bus.js"
 var TabTypes = {
     repositories: "repositories",
     stars       : "stars",
     following   : "following",
     other       : "other",
     // repositories:30,
-}
+};
 
-window.TabTypes = TabTypes
+window.TabTypes = TabTypes;
 
 var html = {
     xpath: (...args) => {
@@ -32,7 +30,7 @@ class AbsTabFactory {
     }
 
     get_dom_list() {
-        return
+
     }
 
     addDom_TextArea() {
@@ -41,9 +39,9 @@ class AbsTabFactory {
 
     on_TextArea_Change(dom_textxarea) {
         dom_textxarea.on("change", e => {
-            let dom         = e.target
+            let dom         = e.target;
             let new_comment = dom.value;
-            window.vm.$emit("comment_change", {
+            bus.$emit("comment_change_signal", {
                 dom        : dom,
                 comment: new_comment,
             })
@@ -66,11 +64,11 @@ class RepositoriesTabFactory extends AbsTabFactory {
     }
 
     addDom_TextArea(index, comment, query_field) {
-        let mian_Index = Math.floor((index) / 30)
-        let new_index  = index - mian_Index * 30
-        let container  = document.querySelectorAll("#user-repositories-list")[mian_Index]
+        let mian_Index = Math.floor((index) / 30);
+        let new_index  = index - mian_Index * 30;
+        let container  = document.querySelectorAll("#user-repositories-list")[mian_Index];
         let li         = $(container).find("ul").children()[new_index];
-        let before_dom = $(li).find(">:eq(0)")
+        let before_dom = $(li).find(">:eq(0)");
         before_dom.after(`<div><textarea query_field=${query_field}></textarea></div>`);
         let dom_textxarea = $(before_dom).next();
         $(dom_textxarea).find("textarea").val(comment);
@@ -96,15 +94,15 @@ class StarsTabFactory extends AbsTabFactory {
     }
 
     addDom_TextArea(index, comment, query_field) {
-        let mian_Index = Math.floor((index) / 30)
-        let container  = document.querySelectorAll("#js-pjax-container")[mian_Index]
-        let new_index  = 2 + (index - mian_Index * 30)
+        let mian_Index = Math.floor((index) / 30);
+        let container  = document.querySelectorAll("#js-pjax-container")[mian_Index];
+        let new_index  = 2 + (index - mian_Index * 30);
         let li         = $(container).find("div > div.col-lg-9.col-md-8.col-12.float-md-left.pl-md-2 > div.position-relative").children()[0];
-        let before_dom = $(li).find(`>div>div:nth-child(${new_index})>div.py-1`)
+        let before_dom = $(li).find(`>div>div:nth-child(${new_index})>div.py-1`);
         before_dom.after(`<div ><textarea style='width: 100%' query_field=${query_field}></textarea></div>`);
         let dom_textxarea = before_dom.next();
         $(dom_textxarea).find("textarea").val(comment);
-        $(dom_textxarea).query_field = query_field;
+        // $(dom_textxarea).query_field = query_field;
         // $(dom_textxarea).change();
         // $(dom_textxarea)[0].pyindex = index;
         this.on_TextArea_Change(dom_textxarea)
@@ -126,16 +124,16 @@ class FollowingTabFactory extends AbsTabFactory {
     }
 
     addDom_TextArea(index, comment, query_field) {
-        let mian_Index = Math.floor((index) / 30)
+        let mian_Index = Math.floor((index) / 30);
 
-        let container  = document.querySelectorAll("#js-pjax-container")[mian_Index]
-        let new_index  = index - mian_Index * 30
+        let container  = document.querySelectorAll("#js-pjax-container")[mian_Index];
+        let new_index  = index - mian_Index * 30;
         let li         = $(container).find("div > div.col-lg-9.col-md-8.col-12.float-md-left.pl-md-2 > div.position-relative").children()[new_index];
-        let before_dom = $(li).find(">:eq(1)")
-        before_dom.after(`<div style='float: right;' query_field=${query_field}><textarea></textarea></div>`);
+        let before_dom = $(li).find(">:eq(1)");
+        before_dom.after(`<div style='float: right;'><textarea  query_field=${query_field}></textarea></div>`);
         let dom_textxarea = before_dom.next();
         $(dom_textxarea).find("textarea").val(comment);
-        $(dom_textxarea).query_field = query_field;
+        // $(dom_textxarea).query_field = query_field;
         // $(dom_textxarea).change();
         // $(dom_textxarea)[0].pyindex = index;
         this.on_TextArea_Change(dom_textxarea)
@@ -156,10 +154,10 @@ class OtherTabFactory extends AbsTabFactory {
     }
 
     addDom_TextArea(index, comment, query_field) {
-        let mian_Index = Math.floor((index) / 30)
+        let mian_Index = Math.floor((index) / 30);
 
-        let container = document.querySelectorAll("#org-repositories")[mian_Index]
-        let new_index = index - mian_Index * 30
+        let container = document.querySelectorAll("#org-repositories")[mian_Index];
+        let new_index = index - mian_Index * 30;
 
         let li = $(container).find("div.col-8.d-inline-block > div > ul ").children()[new_index];
         if (li) {
@@ -168,14 +166,14 @@ class OtherTabFactory extends AbsTabFactory {
             before_dom.after(`<div><textarea query_field=${query_field}></textarea></div>`);
             let dom_textxarea = before_dom.next();
             $(dom_textxarea).find("textarea").val(comment);
-            $(dom_textxarea).query_field = query_field;
+            // $(dom_textxarea).query_field = query_field;
             // $(dom_textxarea).change();
             // $(dom_textxarea)[0].pyindex = index;
-            this.on_TextArea_Change(dom_textxarea)
+            this.on_TextArea_Change(dom_textxarea);
             return
         }
         li = $(container).find("div.col-12.col-md-8.d-md-inline-block > div > ul ").children()[new_index];
-        console.log(index, new_index)
+        console.log(index, new_index);
         if (li) {
 
             let before_dom = $(li).find(">:eq(0)");
@@ -184,8 +182,8 @@ class OtherTabFactory extends AbsTabFactory {
             $(dom_textxarea).find("textarea").val(comment);
             // $(dom_textxarea).change();
             // $(dom_textxarea)[0].pyindex = index;
-            this.on_TextArea_Change(dom_textxarea)
-            return
+            this.on_TextArea_Change(dom_textxarea);
+
         }
 
     }
