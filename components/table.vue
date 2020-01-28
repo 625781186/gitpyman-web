@@ -17,7 +17,7 @@
                  v-model="search"
                  append-icon="search"
                  label="Search"
-                 single-line
+
                  hide-details
          ></v-text-field>
       </v-card-title>
