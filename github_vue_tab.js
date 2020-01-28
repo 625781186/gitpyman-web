@@ -1,6 +1,7 @@
 "use strict";
-
+import siLog from 'si-log'
 import bus from "./github_vue_bus.js"
+
 var TabTypes = {
     repositories: "repositories",
     stars       : "stars",
@@ -22,7 +23,7 @@ var html = {
 class AbsTabFactory {
     constructor() {
         // this.connect()
-        console.log("tab is :", this.get_type())
+        siLog.debug("tab is :", this.get_type())
     }
 
     get_type() {
@@ -42,7 +43,7 @@ class AbsTabFactory {
             let dom         = e.target;
             let new_comment = dom.value;
             bus.$emit("comment_change_signal", {
-                dom        : dom,
+                dom    : dom,
                 comment: new_comment,
             })
 
@@ -173,7 +174,7 @@ class OtherTabFactory extends AbsTabFactory {
             return
         }
         li = $(container).find("div.col-12.col-md-8.d-md-inline-block > div > ul ").children()[new_index];
-        console.log(index, new_index);
+        siLog.debug("find li :",index, new_index);
         if (li) {
 
             let before_dom = $(li).find(">:eq(0)");

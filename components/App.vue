@@ -8,12 +8,8 @@
 
                 backgroundColor : "#232322"; '>
       <v-layout align-center >
-
          <v-btn @click="to_watching">to watching</v-btn>
-         <v-checkbox v-model="remark_state"
-                     label="need remark">
-
-         </v-checkbox>
+         <v-checkbox v-model="remark_state" label="need remark"></v-checkbox>
          <i-switch
                  class="ma-2"
                  size="large"
@@ -37,6 +33,7 @@
 </template>
 <!--JS-->
 <script>
+    import siLog from 'si-log'
     import {TabManager} from "../github_vue_tab.js"
     import {DBManager} from "../github_vue_db.js"
     import VVTable from './table.vue'
@@ -55,7 +52,8 @@
             }
         },
         created() {
-
+            siLog.debug("init db");
+            siLog.error("init db2");
             this.db_factory        = DBManager.get_factory('firebase');
             this.db_factory_backup = this.db_factory;
 

@@ -21,15 +21,23 @@ Vue.use(Vuetify, {
 });
 
 //////////////////////////////////////////////
+import siLog from 'si-log'
 
+// siLog.config({
+//     level: [
+//         'error',
+//             'warn'
+//     ]
+// });
 import App from './components/App.vue'
 import {vuetyfiy_style} from "./lib/vuetify_style.js"
-function add_dom() {
 
+function add_dom() {
+    siLog.debug("test debug")
     /*0. vuetify css*/
-    var style = document.createElement("style");
+    var style  = document.createElement("style");
     style.type = "text/css";
-    var text = document.createTextNode(vuetyfiy_style);
+    var text   = document.createTextNode(vuetyfiy_style);
     style.appendChild(text);
     /*1. vuetify icon*/
     var link1  = document.createElement("link");
@@ -41,7 +49,7 @@ function add_dom() {
     link2.type = "text/css";
     link2.href = "https://fonts.googleapis.com/css?family=Material+Icons";
     // insert dom
-    let head = document.getElementsByTagName("head")[0];
+    let head   = document.getElementsByTagName("head")[0];
     document.head.insertBefore(style, document.head.firstChild);
     head.appendChild(link1);
     head.appendChild(link2);
@@ -54,9 +62,9 @@ function add_dom() {
 
     /*3. vue*/
     window.vm = new Vue({
-        el: '#aha',
-        components: { App },
-        template: '<App/>',
+        el        : '#aha',
+        components: {App},
+        template  : '<App/>',
     })
 }
 

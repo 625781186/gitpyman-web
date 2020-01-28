@@ -1,7 +1,7 @@
 "use strict";
 
 /*import * as firebase from 'E:\\nodejs\\node_global\\node_modules\\firebase';*/
-
+import siLog from 'si-log'
 /*抽象数据库工厂*/
 class AbsDBFactory {
     constructor() {
@@ -68,20 +68,21 @@ class FireBaseDBFactory extends AbsDBFactory {
         docRef.get()
             .then(function (doc) {
                 if (doc.exists) {
-                    let comment = doc.data().comment;
-                    console.log("Document data:", doc.data());
-                    console.log("comment data:", comment);
+                    let data = doc.data()
+                    let comment = data.comment;
+                    siLog.info("Document data:", data);
+                    // siLog.info("comment data:", comment);
                     factory.addDom_TextArea(index, comment, query_field)
 
                 }
                 else {
-                    console.log("No such document!");
+                    siLog.info("No such document!");
                     let comment = "";
                     factory.addDom_TextArea(index, comment, query_field)
                 }
             })
             .catch(function (error) {
-                console.log("Error getting document:", error);
+                siLog.error("Error getting document:", error);
             });
     }
     //del
@@ -106,8 +107,9 @@ class DBManager {
 
     static get_factory(db_type = "firebase") {
         let factory = null;
+
         if (db_type === "firebase") {
-            console.log("new ");
+            siLog.info("db_type:",db_type);
             factory = new FireBaseDBFactory()
         }
         return factory
