@@ -1,0 +1,14 @@
+├── components                                                             
+    ├── App.vue                 :>>> 1.增加页面dom逻辑 ;                                           
+    └── table.vue               :>>> 2.表格逻辑 ;                                           
+├── dist                        :>>>                                           
+    └── main.js                 :>>> 在tampermonkey里使用的打包脚本 ;                                           
+├── lib                         :>>>                                           
+    ├── jquery-1.9.0.min.js     :>>>                                           
+    └── vuetify_style.js        :>>>                                           
+├── github_vue_bus.js           :>>> 信号槽;                                           
+├── github_vue_db.js            :>>> 与后台交互;                                    
+├── github_vue_tab.js           :>>> 判断github的url使用不用的规则 来增加dom                                          
+├── main.js                     :>>> 0.入口;                                          
+├── package.json                :>>>                                           
+└── webpack.config.js           :>>> webpack配置; 
