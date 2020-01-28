@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack github_vue.js --mode development -w"
+    "watch": "webpack main.js --mode development -w"
   },
   "author": "",
   "license": "ISC",
