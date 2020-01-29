@@ -140,4 +140,8 @@
    .layout {
       display: table-cell;
    }
+   .v-card__title {
+      padding: 4px;
+   }
+
 </style>

@@ -7,11 +7,11 @@
                 left: 0;
 
                 backgroundColor : "#232322"; '>
-      <v-layout align-center >
+      <v-layout column align-center style="width: 160px">
          <v-btn @click="to_watching">to watching</v-btn>
-         <v-checkbox v-model="remark_state" label="need remark"></v-checkbox>
+         <v-checkbox v-model="remark_state" label="need remark" class="ma-0"></v-checkbox>
          <i-switch
-                 class="ma-2"
+                 class="ma-0"
                  size="large"
                  :value="show_table_state"
                  v-model="show_table_state"
@@ -22,7 +22,9 @@
       </v-layout>
       <Tabs v-show="show_table_state"
             value="name1"
-            style="max-width:800px;background-color: #ffffff!important">
+            style="max-width:800px;
+                   background-color: #ffffff!important;
+                   border: 2px solid;">
          <TabPane label="Tab 1" name="name1">
             <VVTable :db_factory="db_factory"></VVTable>
          </TabPane>
@@ -233,4 +235,24 @@
    .application--wrap {
       min-height: auto;
    }
+
+   .v-input__slot {
+      margin-bottom: 0px;
+   }
+
+   .v-messages {
+      min-height: 0;
+   }
+   /*github clash ↓*/
+
+   /*path-divider*/
+   /*.d-flex>*, .d-inline-flex>* {*/
+    /*flex:sasd;*/
+   /*}*/
+
+   code {
+
+      box-shadow: unset;
+   }
+   /*github clash ↑*/
 </style>
