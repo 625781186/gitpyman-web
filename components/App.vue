@@ -22,7 +22,11 @@
       </v-layout>
       <Tabs v-show="show_table_state"
             value="name1"
-            style="max-width:800px;
+            style="
+                   position : fixed;
+                   top : 64px;
+                   left:160px;
+                   max-width:800px;
                    background-color: #ffffff!important;
                    border: 2px solid;">
          <TabPane label="Tab 1" name="name1">
@@ -243,16 +247,13 @@
    .v-messages {
       min-height: 0;
    }
+
    /*github clash ↓*/
 
    /*path-divider*/
-   /*.d-flex>*, .d-inline-flex>* {*/
-    /*flex:sasd;*/
-   /*}*/
-
    code {
-
       box-shadow: unset;
    }
+
    /*github clash ↑*/
 </style>

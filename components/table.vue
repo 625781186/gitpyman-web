@@ -25,6 +25,8 @@
               :headers="headers"
               :items="desserts"
               :search="search"
+              :pagination.sync="pagination"
+
       >
          <template v-slot:items="props">
             <td>
@@ -64,7 +66,7 @@
                 loader : null,
                 loading: false,
                 search : '',
-
+                pagination:{rowsPerPage: 7},
                 headers : [
                     {text: 'Query Field', value: 'query_field', sortable: false,},
                     {text: 'Comment', value: 'comment', sortable: false},
