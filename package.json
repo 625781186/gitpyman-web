@@ -8,23 +8,30 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack main.js --mode development -w"
+    "watch": "webpack main.js --config ./webpackConfig/webpack.deve.config.js -w",
+    "build": "webpack main.js --config ./webpackConfig/webpack.prod.config.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
     "css-loader": "^3.4.2",
     "file-loader": "^5.0.2",
     "sass": "^1.25.0",
     "sass-loader": "^8.0.2",
-    "si-log": "^0.2.1",
     "style-loader": "^1.1.3",
     "stylus-loader": "^3.0.2",
+    "terser-webpack-plugin": "^2.3.3",
     "view-design": "^4.1.1",
     "vue": "^2.6.10",
     "vue-loader": "^15.8.3",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
     "vuetify": "^1.5.22"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0"
   }
 }

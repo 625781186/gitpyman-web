@@ -1,12 +1,12 @@
 'use strict';
-const path = require("path")
+const path = require("path");
 
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 
 function resolve (dir) {
-  return path.join(__dirname, '.', dir)
+  return path.join(__dirname, '..', dir)
 }
 console.log(process.env.NODE_PATH)
 module.exports = {
@@ -35,7 +35,8 @@ module.exports = {
   },
   plugins: [
     // make sure to include the plugin for the magic
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+
   ],
   resolve: {
     extensions: ['.js', '.vue', '.json'],

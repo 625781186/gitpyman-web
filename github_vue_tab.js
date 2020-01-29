@@ -1,5 +1,5 @@
 "use strict";
-import siLog from 'si-log'
+
 import bus from "./github_vue_bus.js"
 
 var TabTypes = {
@@ -23,7 +23,7 @@ var html = {
 class AbsTabFactory {
     constructor() {
         // this.connect()
-        siLog.debug("tab is :", this.get_type())
+        console.log("tab is :", this.get_type())
     }
 
     get_type() {
@@ -174,7 +174,7 @@ class OtherTabFactory extends AbsTabFactory {
             return
         }
         li = $(container).find("div.col-12.col-md-8.d-md-inline-block > div > ul ").children()[new_index];
-        siLog.debug("find li :",index, new_index);
+        console.log("find li :",index, new_index);
         if (li) {
 
             let before_dom = $(li).find(">:eq(0)");

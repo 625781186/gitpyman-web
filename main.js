@@ -21,9 +21,9 @@ Vue.use(Vuetify, {
 });
 
 //////////////////////////////////////////////
-import siLog from 'si-log'
 
-// siLog.config({
+
+// console.config({
 //     level: [
 //         'error',
 //             'warn'
@@ -33,7 +33,7 @@ import App from './components/App.vue'
 import {vuetyfiy_style} from "./lib/vuetify_style.js"
 
 function add_dom() {
-    siLog.debug("test debug")
+
     /*0. vuetify css*/
     var style  = document.createElement("style");
     style.type = "text/css";
