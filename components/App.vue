@@ -5,8 +5,7 @@
                 position : fixed;
                 top : 64px;
                 left: 0;
-
-                backgroundColor : "#232322"; '>
+               '>
       <v-layout column align-center style="width: 160px">
          <v-btn @click="to_watching">to watching</v-btn>
          <v-checkbox v-model="remark_state" label="need remark" class="ma-0"></v-checkbox>
@@ -34,7 +33,6 @@
          </TabPane>
          <TabPane label="Tab 2" name="name2">You can customize the extension.</TabPane>
       </Tabs>
-
    </v-app>
 </template>
 <!--JS-->
@@ -88,7 +86,6 @@
             window.addEventListener('popstate', function (e) {
                 that.__clear_QUERY_FIELD_LIST()
             });
-
 
             var _wr           = function (type) {
                 var orig = history[type];
@@ -241,7 +238,7 @@
    }
 
    .v-input__slot {
-      margin-bottom: 0px;
+      margin-bottom: 0;
    }
 
    .v-messages {

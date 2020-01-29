@@ -5,7 +5,6 @@ github 备忘录 : 管理github的star过的项目.
 #### 缺陷: 
 
 <h3 style="color:red">需要翻墙!!!</h3>
-
 1. 部分vuetify 样式 与github冲突 ; 
 2. 需要用额外的插件来禁止chrome的CSP以达到可以使用firebase ;
 
@@ -21,7 +20,7 @@ github 备忘录 : 管理github的star过的项目.
 
 5. 增加watching页面 ;
 
-6. 增加快速跳转到watching界面的按钮 ;
+6. 为更多的网站增加备注支持 ;
 
    ...
 
